@@ -1,4 +1,4 @@
-# Installing Odysseus on Android (Termux + PRoot Ubuntu)
+# 📱 Odysseus AI - Android Installation  (Termux + PRoot Ubuntu)
 
 This guide explains how to install and run **Odysseus** (the self-hosted AI workspace by PewDiePie/pewdiepie-archdaemon) on your Android device using **Termux** and **PRoot Distro (Ubuntu)**.
 
