@@ -105,12 +105,18 @@ Otherwise, simply run `python3 setup.py` and it will generate a random temporary
 
 ## How to Start Odysseus in the Future
 
-Whenever you restart Termux, run this command to start the server:
+### For Method 1 (One-Line Automated Installation):
+The installer automatically created a startup script `run.sh` in your Termux home directory. You can start the server anytime by opening Termux and running:
+```bash
+./run.sh
+```
 
+### For Method 2 (Manual Installation):
+Run the following command to start the server:
 ```bash
 proot-distro login ubuntu -- bash -c "cd odysseus && source venv/bin/activate && python3 -m uvicorn app:app --host 0.0.0.0 --port 7000"
 ```
 
-Once started, open your phone's browser and go to `http://localhost:7000`. Log in using:
+Once the server is running, open your phone's web browser and go to `http://localhost:7000`. Log in using:
 * **Username:** `admin`
-* **Password:** `71807180` (or the one you generated during setup)
+* **Password:** `71807180` (or your custom password)

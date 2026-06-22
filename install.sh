@@ -86,8 +86,19 @@ proot-distro login ubuntu -- bash -c '
     echo "Default Login Credentials:"
     echo "  Username: admin"
     echo "  Password: 71807180"
-    echo ""
-    echo "To start the Odysseus server in the future, run:"
-    echo "  proot-distro login ubuntu -- bash -c \"cd odysseus && source venv/bin/activate && python3 -m uvicorn app:app --host 0.0.0.0 --port 7000\""
     echo "=========================================================="
 '
+
+# Create startup script in Termux home directory
+echo "Creating run.sh startup script in Termux Home..."
+cat << 'EOF' > $HOME/run.sh
+#!/data/data/com.termux/files/usr/bin/bash
+proot-distro login ubuntu -- bash -c "cd odysseus && source venv/bin/activate && python3 -m uvicorn app:app --host 0.0.0.0 --port 7000"
+EOF
+chmod +x $HOME/run.sh
+
+echo ""
+echo "=========================================================="
+echo " You can now start Odysseus anytime in Termux by running:"
+echo "   ./run.sh"
+echo "=========================================================="
