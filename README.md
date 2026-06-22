@@ -1,5 +1,5 @@
 # 📱 Odysseus AI — Android
-### ⚡ *thevoidkernel*
+### *free, open-source, and self-hosted AI workspace*
 
 ---
 
