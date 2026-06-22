@@ -29,7 +29,12 @@ Open your Termux app and run the following command:
 curl -sSL https://raw.githubusercontent.com/AbuZar-Ansarii/Odysseus-Android/main/install.sh | bash
 ```
 
-Once the installation finishes, you can log in using the following default credentials:
+Once the installation finishes, you can start the Odysseus server by running:
+```bash
+./run.sh
+```
+
+Log in using the following default credentials:
 * **Username:** `admin`
 * **Password:** `71807180`
 
