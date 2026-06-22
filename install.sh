@@ -76,13 +76,16 @@ proot-distro login ubuntu -- bash -c '
     pip install -r requirements.txt --no-input
 
     echo "--- [Ubuntu] Initializing Odysseus Database ---"
+    export ODYSSEUS_ADMIN_PASSWORD="71807180"
     python3 setup.py
 
     echo ""
     echo "=========================================================="
     echo " Odysseus Installation Completed Successfully!"
     echo "=========================================================="
-    echo "Write down the admin password displayed above."
+    echo "Default Login Credentials:"
+    echo "  Username: admin"
+    echo "  Password: 71807180"
     echo ""
     echo "To start the Odysseus server in the future, run:"
     echo "  proot-distro login ubuntu -- bash -c \"cd odysseus && source venv/bin/activate && python3 -m uvicorn app:app --host 0.0.0.0 --port 7000\""

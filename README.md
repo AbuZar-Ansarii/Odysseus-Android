@@ -29,6 +29,10 @@ Open your Termux app and run the following command:
 curl -sSL https://raw.githubusercontent.com/AbuZar-Ansarii/Odysseus-Android/main/install.sh | bash
 ```
 
+Once the installation finishes, you can log in using the following default credentials:
+* **Username:** `admin`
+* **Password:** `71807180`
+
 ---
 
 ## Method 2: Manual Step-by-Step Installation
@@ -90,10 +94,12 @@ pip install -r requirements.txt
 > Because compilation is happening on your mobile device inside an emulated Linux environment, compiling packages like `cryptography`, `greenlet`, or `pydantic-core` can take **10 to 30 minutes** depending on your phone's processor. Please be patient.
 
 ### Step 7: Run Odysseus Initialization
+If you want to set your password to the default (`71807180`), run:
 ```bash
+export ODYSSEUS_ADMIN_PASSWORD="71807180"
 python3 setup.py
 ```
-*Make sure to copy the generated admin password shown in the terminal!*
+Otherwise, simply run `python3 setup.py` and it will generate a random temporary password for you (make sure to copy it!).
 
 ---
 
@@ -105,4 +111,6 @@ Whenever you restart Termux, run this command to start the server:
 proot-distro login ubuntu -- bash -c "cd odysseus && source venv/bin/activate && python3 -m uvicorn app:app --host 0.0.0.0 --port 7000"
 ```
 
-Once started, open your phone's browser and go to `http://localhost:7000`. Log in using `admin` and the password generated during the setup step.
+Once started, open your phone's browser and go to `http://localhost:7000`. Log in using:
+* **Username:** `admin`
+* **Password:** `71807180` (or the one you generated during setup)
