@@ -12,9 +12,12 @@ set -e
 export DEBIAN_FRONTEND=noninteractive
 export APT_LISTCHANGES_FRONTEND=none
 
-echo "=========================================================="
-echo " Starting Odysseus Termux Installer (Non-Interactive) "
-echo "=========================================================="
+echo -e "\033[1;36m==========================================================\033[0m"
+echo -e "\033[1;35m                Odysseus AI - Android                     \033[0m"
+echo -e "\033[1;32m                    thevoidkernel                         \033[0m"
+echo -e "\033[1;36m==========================================================\033[0m"
+echo -e "\033[1;33m       Starting Non-Interactive Installer...              \033[0m"
+echo -e "\033[1;36m==========================================================\033[0m"
 
 # 1. Update and upgrade Termux packages automatically
 echo "[1/4] Updating Termux packages..."
@@ -80,13 +83,13 @@ proot-distro login ubuntu -- bash -c '
     python3 setup.py
 
     echo ""
-    echo "=========================================================="
-    echo " Odysseus Installation Completed Successfully!"
-    echo "=========================================================="
-    echo "Default Login Credentials:"
-    echo "  Username: admin"
-    echo "  Password: 71807180"
-    echo "=========================================================="
+    echo -e "\033[1;32m==========================================================\033[0m"
+    echo -e "\033[1;36m        Odysseus AI - Android - Installed Successfully!   \033[0m"
+    echo -e "\033[1;32m==========================================================\033[0m"
+    echo -e "\033[1;33mDefault Login Credentials:\033[0m"
+    echo -e "  Username: \033[1;37madmin\033[0m"
+    echo -e "  Password: \033[1;37m71807180\033[0m"
+    echo -e "\033[1;32m==========================================================\033[0m"
 '
 
 # Create startup script in Termux home directory
@@ -98,7 +101,7 @@ EOF
 chmod +x $HOME/run.sh
 
 echo ""
-echo "=========================================================="
-echo " You can now start Odysseus anytime in Termux by running:"
-echo "   ./run.sh"
-echo "=========================================================="
+echo -e "\033[1;32m==========================================================\033[0m"
+echo -e "\033[1;35m    You can now start Odysseus anytime in Termux by running: \033[0m"
+echo -e "                   \033[1;36m./run.sh\033[0m"
+echo -e "\033[1;32m==========================================================\033[0m"

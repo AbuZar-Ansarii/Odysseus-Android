@@ -1,128 +1,134 @@
-# 📱Odysseus AI - Android Installation (Termux)
-
-#### Run a private, self-hosted AI workspace on your Android device using proot-distro Ubuntu
-
-This guide explains how to install and run **Odysseus** (the self-hosted AI workspace by PewDiePie/pewdiepie-archdaemon) on your Android device using **Termux** and **PRoot Distro (Ubuntu)**.
-
-We provide two installation methods:
-1. **One-Line Automated Installation** (Recommended)
-2. **Manual Step-by-Step Installation**
+# 📱 Odysseus AI — Android
+### ⚡ *thevoidkernel*
 
 ---
 
-## Prerequisites
-
-1. **Android Device**: A relatively modern phone with at least 4GB of RAM (8GB+ recommended).
-2. **Termux (F-Droid version)**: Do **NOT** install Termux from the Google Play Store, as that version is deprecated and no longer receives package updates. Download it from [F-Droid](https://f-droid.org/packages/com.termux/).
-3. **Free Storage**: At least 4-6GB of free storage space.
-4. **Internet Connection**: A stable connection for downloading packages and cloning dependencies.
+A professional guide and automation suite to run **Odysseus** (the private, local-first AI workspace by PewDiePie) inside a sandboxed Linux environment on your Android device.
 
 ---
 
-## Method 1: One-Line Automated Installation
+## 📋 Features & Overview
 
-This method automatically updates Termux, installs `proot-distro`, sets up Ubuntu, configures all packages, compiles Python dependencies (handling all `y/n` prompts automatically), and runs the initial setup.
+| Feature | Description |
+| :--- | :--- |
+| **Local-First & Private** | Keep your chats, data, and workflows secure on your device. |
+| **One-Line Installer** | Installs Ubuntu, sets up python virtualenvs, compiles libraries, and pre-seeds the password automatically. |
+| **Custom Quick-Launch** | Start the server in a single command using the generated `./run.sh` script. |
+| **Android Optimizations** | Standardized compiling dependencies tailored for `aarch64` architectures inside Termux PRoot. |
 
-Open your Termux app and run the following command:
+---
+
+## ⚙️ Prerequisites
+
+Before you start, please ensure your Android device meets the following requirements:
+
+* **RAM:** At least 4GB of RAM (8GB+ recommended for running local models).
+* **Storage:** 4GB to 6GB of free storage space.
+* **Termux (F-Droid):** Do **NOT** use the Google Play Store version as it is deprecated. Download the latest release from [F-Droid](https://f-droid.org/packages/com.termux/).
+* **Internet:** A stable connection for package installation and repository cloning.
+
+---
+
+## 🚀 Method 1: One-Line Automated Installation (Recommended)
+
+This method automates the entire process (system updates, package installation, repo cloning, dependencies compilation, database setup, and creating the startup shortcut).
+
+Open your Termux terminal and paste:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/AbuZar-Ansarii/Odysseus-Android/main/install.sh | bash
 ```
 
-Once the installation finishes, you can start the Odysseus server by running:
+### 🏁 Starting the Server
+Once the installer completes, simply start the Odysseus server by running:
 ```bash
 ./run.sh
 ```
 
-Log in using the following default credentials:
+### 🔑 Default Credentials
+Use these details to log in to the dashboard at `http://localhost:7000`:
 * **Username:** `admin`
 * **Password:** `71807180`
 
 ---
 
-## Method 2: Manual Step-by-Step Installation
+## 🛠️ Method 2: Manual Step-by-Step Installation
 
-If you prefer to run the setup steps manually, follow these instructions:
+If you prefer to configure everything manually, execute the following steps sequence:
 
-### Step 1: Install Termux & Set Up Base Packages
-Open Termux and run:
+### Step 1: Initialize Termux Environment
 ```bash
-# Update and upgrade Termux packages
+# Update local package index and upgrade packages
 pkg update && pkg upgrade -y
 
-# Install git, curl, and proot-distro
+# Install git, curl and proot-distro
 pkg install git curl proot-distro -y
 ```
 
-### Step 2: Install and Log into Ubuntu
+### Step 2: Set Up Ubuntu Distro
 ```bash
-# Install Ubuntu distro
+# Install Ubuntu Linux environment
 proot-distro install ubuntu
 
-# Log in to your new Ubuntu environment
+# Login to Ubuntu container
 proot-distro login ubuntu
 ```
 
-### Step 3: Install Required Linux Dependencies (Inside Ubuntu)
-Inside the Ubuntu terminal, run:
+### Step 3: Install Compiler Tools & Dependencies (Inside Ubuntu)
 ```bash
-# Update Ubuntu packages
+# Update Ubuntu package manager
 apt update && apt upgrade -y
 
-# Install build dependencies, Python, and Rust/Cargo (needed for cryptography/pydantic compilation)
+# Install python tools, compilation headers, and Rust compiler
 apt install -y git python3 python3-pip python3-venv build-essential libssl-dev libffi-dev python3-dev rustc cargo curl
 ```
 
-### Step 4: Clone the Odysseus Repository
+### Step 4: Clone the Project
 ```bash
 git clone https://github.com/pewdiepie-archdaemon/odysseus.git
 cd odysseus
 ```
 
-### Step 5: Set Up the Python Virtual Environment
+### Step 5: Configure Virtual Environment & Package Tools
 ```bash
-# Create a virtual environment named 'venv'
+# Create and activate virtual environment
 python3 -m venv venv
-
-# Activate the virtual environment
 source venv/bin/activate
 
-# Upgrade pip, setuptools, and wheel for clean installation
+# Upgrade installer tools
 pip install --upgrade pip setuptools wheel
 ```
 
-### Step 6: Install Python Dependencies
+### Step 6: Install Python Requirements
 ```bash
 pip install -r requirements.txt
 ```
 > [!IMPORTANT]
-> Because compilation is happening on your mobile device inside an emulated Linux environment, compiling packages like `cryptography`, `greenlet`, or `pydantic-core` can take **10 to 30 minutes** depending on your phone's processor. Please be patient.
+> Compiling C/C++ and Rust extensions (such as `cryptography`, `greenlet`, or `pydantic-core`) inside an emulated PRoot environment on a phone can take **10 to 30 minutes**. Please do not close Termux.
 
-### Step 7: Run Odysseus Initialization
-If you want to set your password to the default (`71807180`), run:
+### Step 7: Initialize Database & Seed Password
+To pre-seed the admin password to `71807180`:
 ```bash
 export ODYSSEUS_ADMIN_PASSWORD="71807180"
 python3 setup.py
 ```
-Otherwise, simply run `python3 setup.py` and it will generate a random temporary password for you (make sure to copy it!).
+*(Alternatively, run `python3 setup.py` without the env variable to generate a random temporary password.)*
 
 ---
 
-## How to Start Odysseus in the Future
+## 🔄 Running the Server
 
-You can start the Odysseus server at any time by running the `run.sh` script included in this repository:
-
+### ⚡ Using the Shortcut (Method 1)
+If you used the automated installer, a startup script is placed in your Termux home directory:
 ```bash
 chmod +x run.sh
 ./run.sh
 ```
 
-Alternatively, you can run the start command directly:
-
+### 💻 Using Raw Command (Method 2)
+To start the server manually at any time:
 ```bash
 proot-distro login ubuntu -- bash -c "cd odysseus && source venv/bin/activate && python3 -m uvicorn app:app --host 0.0.0.0 --port 7000"
 ```
 
-Once the server is running, open your phone's web browser and go to `http://localhost:7000`. Log in using:
-* **Username:** `admin`
-* **Password:** `71807180` (or your custom password)
+Once running, navigate to `http://localhost:7000` (or `http://127.0.0.1:7000`) in your web browser.
