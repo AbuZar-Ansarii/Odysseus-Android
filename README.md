@@ -2,6 +2,7 @@
 ### *free, open-source, and self-hosted AI workspace*
 
 ---
+<img width="1280" height="720" alt="odysseus" src="https://github.com/user-attachments/assets/33bf9f9e-baf5-42cd-a24c-6d99f29b3bc4" />
 
 A professional guide and automation suite to run **Odysseus** (the private, local-first AI workspace by PewDiePie) inside a sandboxed Linux environment on your Android device.
 
